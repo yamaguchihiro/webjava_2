@@ -27,9 +27,7 @@ public class GameController {
   @RequestMapping(value = {"/game"}, method = {RequestMethod.GET}) // URLとのマッピング
   public ModelAndView show(ModelAndView mav) {
 
-    // なんもなかったら
-
-    // テスト出力
+    //表示側では基本何もしないが、初期状態としてゲーム選択できるページを作るところはここの責任でやる
 
     String message1 = (String) session.getAttribute("message1");
     String message2 = (String) session.getAttribute("message2");
@@ -61,20 +59,6 @@ public class GameController {
       // 初期のボタン
       mav.addObject("button2", "HighAndLow");
     }
-    // 1.もしゲームが始まっていなかったら、ゲームを開始する選択に関する選択肢をボタン二つに出す
-    // session.getAttribute("CurrentCart");で分岐する
-    // 2.ゲームが始まっていて、かつ終わってなければ、ブラックジャックとハイアンドローのどっちが行われているか判別する
-
-    // BJ-1.hit standのボタンを表示する
-
-    // HL-1.hi low のボタンを表示する
-
-    // 3.ゲームが始まっていて、終わっていたら、resetボタンを表示する
-
-    // 4.get側でクッキーにぶち込んだメッセージ（ディーラーとプレイヤーの手札とか表示する）
-
-
-    // 基本的にはここは表示部分なのでボタン表示以外はやらない
 
     mav.setViewName("GamePage");
     return mav;
@@ -85,6 +69,32 @@ public class GameController {
 
   private ModelAndView order(ModelAndView mav, @Valid GameForm gameForm,
       BindingResult bindingResult, HttpServletRequest request) {
+
+    /*
+     * 本当はこんな感じで書きたい
+     * 引っ張ってきてからexecuteActionして処理は全部gameStateに投げる
+     * TODO：リファクタリングする
+     *
+     * private ModelAndView order(ModelAndView mav, @Valid GameForm gameForm,
+       BindingResult bindingResult, HttpServletRequest request) {
+
+    player.executeAction(gameForm.action,deck);
+    dealer.executeAction(gameForm.action,deck);
+
+    if(gameState.isGameFinished){
+        //ゲーム続行時の処理
+    }else{
+        //終了時の処理
+        if(gameState.isPlayerWins){
+            //勝った時の処理
+        }else{
+            //負けた時の処理
+        }
+    }
+}
+     *
+     */
+
 
     Deck currentDeck;
     // deckcheck
