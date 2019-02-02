@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>UserList</title>
+</head>
+<body>
+	<span class="message1" th:text="${message1}"></span>
+	<hr>
+	<span class="message2" th:text="${message2}"></span>
+	<hr>
+		<span class="message3" th:text="${message3}"></span>
+	<hr>
+	<dl>
+			<form action="#" th:action="@{/game}" th:object="${GameForm}"
+				method="post">
+					<input type="hidden" name="action" th:value="${button1}" />
+					<input type="submit" th:value="${button1}" />
+			</form>
+			<form action="#" th:action="@{/game}" th:object="${GameForm}"
+				method="post">
+				<input type="hidden" name="action" th:value="${button2}" />
+					<input type="submit" th:value="${button2}" />
+			</form>
+	</dl>
+</body>
+</html>
