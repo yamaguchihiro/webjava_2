@@ -24,6 +24,12 @@ public class GameController {
   @Autowired
   HttpSession session;
 
+  //既知の問題（時間がないので対応範囲外）
+  //1.ゲームが長引きすぎるとデッキシャッフルの処理を入れてないのでドロー処理で無限ループになる
+  //2.引き分け処理は全てプレイヤーの勝ち扱いになる
+  //3.deckの参照渡しができないので無理やり値渡しにしている（参照渡しはJavaじゃ無理か？）
+  //4.メッセージが全部セッションに保持（本来論でいえば受け渡し用クラスを作るべき？）
+
   @RequestMapping(value = {"/game"}, method = {RequestMethod.GET}) // URLとのマッピング
   public ModelAndView show(ModelAndView mav) {
 
@@ -132,7 +138,7 @@ public class GameController {
       session.setAttribute("dealer", new HighAndLowUser());
     }
 
-    // hilowも本当は書く
+    // hilow
 
     if (session.getAttribute("GameState") instanceof HighAndLow) {
       HighAndLow HL = (HighAndLow) session.getAttribute("GameState");
@@ -239,7 +245,6 @@ public class GameController {
       }
     }
 
-    // それ以外は進行中のゲームに併せて分岐する
     return new ModelAndView("redirect:/game"); // リダイレクト
 
   }
