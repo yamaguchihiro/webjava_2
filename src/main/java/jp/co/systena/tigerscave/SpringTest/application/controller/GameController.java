@@ -204,7 +204,7 @@ public class GameController {
       session.setAttribute("message1", "YourHands " + player.calHands() + " :"
           + Card.ConvertCardIndexListToString(player.showDown()));
       session.setAttribute("message2",
-          "DealerHands :" + Card.ConvertCardIndexListToString(dealer.showDown()));
+          "DealerHands : 裏向きのカード ," + Card.ConvertCardIndexListToString(dealer.showDown()));
 
       if (bj.isGameFinished()) {
         session.removeAttribute("button1");

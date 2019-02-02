@@ -70,7 +70,7 @@ public class BlackjackDealer extends Actor {
       if(handNum >= 12 - aceCount) {
         handNum +=1;
       }else{
-        handNum +=10;
+        handNum +=11;
       }
     }
 

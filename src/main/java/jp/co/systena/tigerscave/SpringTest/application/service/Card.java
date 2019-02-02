@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Card {
 
-  static String[] suits = {"スペードの","ハートの","ダイヤの","クラブの"};
+  static String[] suits = {"♠","❤","♦","♣"};
 
 
   static String ConvertCardIndexToString(int cardIndex) {
